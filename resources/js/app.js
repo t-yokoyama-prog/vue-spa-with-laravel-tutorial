@@ -6,6 +6,7 @@ Vue.use(VueRouter)
 import App from './views/App'
 import Hello from './views/Hello'
 import Home from './views/Home'
+import UsersIndex from './views/UsersIndex'
 
 require('./bootstrap')
 
@@ -15,13 +16,18 @@ const router = new VueRouter({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
     },
     {
       path: '/hello',
       name: 'hello',
-      component: Hello
-    }
+      component: Hello,
+    },
+    {
+      path: '/users',
+      name: 'users.index',
+      component: UsersIndex,
+    },
   ],
 });
 
