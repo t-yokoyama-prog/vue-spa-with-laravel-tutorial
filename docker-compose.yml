@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    ports:
+      - 8080:80
+    volumes:
+      - ./:/var/www
+    environment:
+      DB_HOST: mysql
+      DB_DATABASE: laravel-vue-spa
+      DB_USERNAME: root
+      DB_PASSWORD: secret
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - laravel-vue-spa:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: laravel-vue-spa
+      MYSQL_ROOT_PASSWORD: secret
+
+volumes:
+  laravel-vue-spa:
