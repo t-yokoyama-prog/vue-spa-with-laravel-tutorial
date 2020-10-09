@@ -8,6 +8,7 @@
       <li v-for="{ id, name, email } in users" :key="id">
         <strong>Name:</strong> {{ name }}
         <strong>Email:</strong> {{ email }}
+        <router-link :to="{ name: 'users.edit', params: { id } }">Edit</router-link>
       </li>
     </ul>
 
