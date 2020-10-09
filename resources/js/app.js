@@ -8,6 +8,7 @@ import Hello from './views/Hello'
 import Home from './views/Home'
 import UsersIndex from './views/UsersIndex'
 import UsersEdit from './views/UsersEdit'
+import NotFound from './views/NotFound'
 
 require('./bootstrap')
 
@@ -33,6 +34,15 @@ const router = new VueRouter({
       path: '/users/:id/edit',
       name: 'users.edit',
       component: UsersEdit,
+    },
+    {
+      path: '/404',
+      name: '404',
+      component: NotFound,
+    },
+    {
+      path: '*',
+      redirect: '/404',
     },
   ],
 });

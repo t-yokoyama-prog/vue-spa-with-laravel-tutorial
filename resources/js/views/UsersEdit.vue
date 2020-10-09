@@ -13,6 +13,7 @@
       </div>
       <div class="form-group">
         <button type="submit" :disabled="saving">Update</button>
+        <button :disabled="saving" @click.prevent="onDelete($event)">Delete</button>
       </div>
     </form>
   </div>
@@ -49,6 +50,18 @@ export default {
           console.log(error);
         }).then(_ => this.saving = false);
     },
+    onDelete(event) {
+      this.saving = true;
+
+      api
+        .delete(this.user.id)
+        .then((response) => {
+          this.message = 'User Deleted';
+          setTimeout(() => {
+            this.$router.push({ name: 'users.index' });
+          }, 2000);
+        });
+    },
   },
   created() {
     api
@@ -58,6 +71,9 @@ export default {
           this.loaded = true;
           this.user = response.data.data;
         }, 5000);
+      })
+      .catch(error => {
+        this.$router.push({ name: '404' });
       });
   },
 };
