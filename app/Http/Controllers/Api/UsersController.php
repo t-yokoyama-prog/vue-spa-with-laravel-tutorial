@@ -19,6 +19,21 @@ class UsersController extends Controller
         return new UserResource($user);
     }
 
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:users',
+            'password' => 'required|min:8',
+        ]);
+
+        return new UserResource(User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]));
+    }
+
     public function update(User $user, Request $request)
     {
         $data = $request->validate([
