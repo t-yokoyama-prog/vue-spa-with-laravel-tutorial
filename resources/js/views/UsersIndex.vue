@@ -24,13 +24,17 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
+import api from '../api/users';
 
 const getUsers = (page, callback) => {
-  const params = { page };
+  const params = {
+    params: {
+      page: page
+    }
+  };
 
-  axios
-    .get('api/users', { params })
+  api
+    .all(params)
     .then(response => {
       callback(null, response.data);
     }).catch(error => {
